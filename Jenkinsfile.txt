@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your source code from version control
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Install Python dependencies using pip
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run unit tests for your Tic Tac Toe project
+                sh 'python -m unittest discover -s tests -p "*_test.py"'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // This stage could include deployment steps if applicable
+                // For a Tic Tac Toe game, deployment might not be necessary
+                echo 'Deployment steps go here'
+            }
+        }
+    }
+}
